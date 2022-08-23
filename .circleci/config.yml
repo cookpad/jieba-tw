@@ -26,18 +26,18 @@ jobs: # A basic unit of work in a run
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /home/circleci/.pyenv
-      - restore_cache:
-          key: ml-utils-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
+      # - restore_cache:
+      #     key: ml-utils-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       - run:
           # `--deploy` ensures installation fails if Pipfile.lock is out of date
           command: |
-            pipenv sync --dev
-      - save_cache:
-          key: ml-utils-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
-          paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages"
+            pip install jieba
+      # - save_cache:
+      #     key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
+      #     paths:
+      #       - ".venv"
+      #       - "/usr/local/bin"
+      #       - "/usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages"
       # - run:
       #     name: Linter, Type Checking, Black
       #     command: |
