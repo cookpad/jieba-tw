@@ -62,7 +62,7 @@ jobs: # A basic unit of work in a run
       - run: sudo chown -R circleci:circleci /usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages
       - run:
           name: Build library
-          command: python setup.py sdist
+          command: python setup.py bdist_wheel
       - persist_to_workspace:
           root: << pipeline.parameters.working_directory >>
           paths: .
