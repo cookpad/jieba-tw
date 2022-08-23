@@ -32,6 +32,7 @@ jobs: # A basic unit of work in a run
           # `--deploy` ensures installation fails if Pipfile.lock is out of date
           command: |
             pip install wheel
+            pip install setuptools
             pip install jieba
       # - save_cache:
       #     key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
