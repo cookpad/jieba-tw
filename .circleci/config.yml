@@ -28,10 +28,7 @@ jobs: # A basic unit of work in a run
       - run: sudo chown -R circleci:circleci /home/circleci/.pyenv
       # - restore_cache:
       #     key: ml-utils-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
-      - run: |
-            pip install wheel
-            pip install setuptools
-            pip install jieba
+      - run: pip install jieba
       # - save_cache:
       #     key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       #     paths:
@@ -61,9 +58,6 @@ jobs: # A basic unit of work in a run
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages
-      - run: |
-            pip install wheel
-            pip install setuptools
       - run:
           name: Build library
           command: python setup.py sdist
