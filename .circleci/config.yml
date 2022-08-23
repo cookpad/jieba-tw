@@ -99,8 +99,8 @@ workflows:
             parameters:
               python_version: [ "3.8", "3.9", "3.10" ]
       - build:
-          requires:
-            - test
+          # requires:
+          #   - test
           filters:
             tags:
               only: /.*/
