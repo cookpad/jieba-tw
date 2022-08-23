@@ -29,7 +29,6 @@ jobs: # A basic unit of work in a run
       # - restore_cache:
       #     key: ml-utils-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       - run: |
-            pip uninstall wheel
             pip install wheel
             pip install setuptools
             pip install jieba
