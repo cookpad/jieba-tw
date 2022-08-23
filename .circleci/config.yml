@@ -4,64 +4,7 @@ orbs:
   slack: circleci/slack@4.0.1
 
 commands:
-  # slack_notify_if_failed:
-  #   description: >
-  #     Notify Slack if a CI failure occured on the branch. Use this command as the final
-  #     step of a job.
-  #   steps:
-  #     - slack/notify:
-  #         event: fail
-  #         branch_pattern: main
-  #         mentions: '@ml-platform'
-  #         custom: |
-  #           {
-  #           	"blocks": [
-  #           		{
-  #           			"type": "section",
-  #           			"text": {
-  #           				"type": "mrkdwn",
-  #           				"text": "Your job *${CIRCLE_JOB}* in *${CIRCLE_PROJECT_REPONAME}* has failed ⚠️ "
-  #           			},
-  #           			"fields": [
-  #           				{
-  #           					"type": "mrkdwn",
-  #           					"text": "*Commiter*:\\n${CIRCLE_USERNAME}"
-  #           				},
-  #           				{
-  #           					"type": "mrkdwn",
-  #           					"text": "*Branch*:\\n${CIRCLE_BRANCH}"
-  #           				},
-  #           				{
-  #           					"type": "mrkdwn",
-  #           					"text": "*Mentions*:\\n${SLACK_PARAM_MENTIONS}"
-  #           				},
-  #           				{
-  #           					"type": "mrkdwn",
-  #           					"text": "*SHA*:\\n${CIRCLE_SHA1}"
-  #           				}
-  #           			],
-  #           			"accessory": {
-  #           				"type": "image",
-  #           				"image_url": "https://assets.brandfolder.com/otz5mn-bw4j2w-6jzqo8/original/circle-logo-badge-black.png",
-  #           				"alt_text": "CircleCI logo"
-  #           			}
-  #           		},
-  #           		{
-  #           			"type": "actions",
-  #           			"elements": [
-  #           				{
-  #           					"type": "button",
-  #           					"text": {
-  #           						"type": "plain_text",
-  #           						"text": "View Job"
-  #           					},
-  #           					"url": "${CIRCLE_BUILD_URL}"
-  #           				}
-  #           			]
-  #           		}
-  #           	]
-  #           }
-
+ 
 parameters:
   working_directory:
     type: string
@@ -101,9 +44,9 @@ jobs: # A basic unit of work in a run
       #       pipenv run lint
       #       pipenv run mypy --config-file mypy.ini ml_utils
       #       pipenv run black --check --diff .
-      - run:
-          command: |
-            pipenv run test
+      # - run:
+      #     command: |
+      #       pipenv run test
       - store_test_results:
           path: reports
       # - slack_notify_if_failed
@@ -127,7 +70,7 @@ jobs: # A basic unit of work in a run
       - persist_to_workspace:
           root: << pipeline.parameters.working_directory >>
           paths: .
-      - slack_notify_if_failed
+      # - slack_notify_if_failed
 
   deploy_library:
     working_directory: << pipeline.parameters.working_directory >>
@@ -143,7 +86,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: Deploy to package cloud
           command: package_cloud push cookpad-global/python-internal/python ./dist/*
-      - slack_notify_if_failed
+      # - slack_notify_if_failed
 
 workflows:
   version: 2
