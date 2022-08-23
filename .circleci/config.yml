@@ -61,14 +61,12 @@ jobs: # A basic unit of work in a run
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages
-      # - restore_cache:
-      #     key: jieba-tw-{{ .Branch }}-<< pipeline.parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       - run: |
             pip install wheel
             pip install setuptools
       - run:
           name: Build library
-          command: python setup.py sdist bdist_wheel
+          command: python setup.py sdist
       - persist_to_workspace:
           root: << pipeline.parameters.working_directory >>
           paths: .
