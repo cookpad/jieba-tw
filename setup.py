@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
 LONGDOC = """
-jieba
+jieba-tw
 =====
 
 “结巴”中文分词：做最好的 Python 中文分词组件
@@ -68,7 +68,7 @@ setup(name='jieba-tw',
         'Topic :: Text Processing :: Linguistic',
       ],
       keywords='NLP,tokenizing,Chinese word segementation',
-      packages=['jieba'],
-      package_dir={'jieba':'jieba'},
-      package_data={'jieba':['*.*','finalseg/*','analyse/*','posseg/*']}
+      packages=['jieba-tw'],
+      package_dir={'jieba-tw':'jieba-tw'},
+      package_data={'jieba-tw':['*.*','finalseg/*','analyse/*','posseg/*']}
 )

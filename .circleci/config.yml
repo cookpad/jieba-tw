@@ -28,7 +28,9 @@ jobs: # A basic unit of work in a run
       - run: sudo chown -R circleci:circleci /home/circleci/.pyenv
       # - restore_cache:
       #     key: ml-utils-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
-      - run: pip install jieba
+      - run: 
+            command: |
+              pip install jieba
       # - save_cache:
       #     key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       #     paths:
