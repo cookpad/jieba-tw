@@ -22,12 +22,12 @@ jobs: # A basic unit of work in a run
     docker:
       - image: cimg/python:<< parameters.python_version >>
         environment:
-          PIPENV_VENV_IN_PROJECT: true
+          PIPENV_VENV_IN_PROJECT: false
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /home/circleci/.pyenv
       # - restore_cache:
-      #     key: ml-utils-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
+      #     key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       - run: 
             command: |
               pip install jieba
@@ -55,7 +55,7 @@ jobs: # A basic unit of work in a run
     docker:
       - image: circleci/python:<< pipeline.parameters.python_version >>
         environment:
-          PIPENV_VENV_IN_PROJECT: true
+          PIPENV_VENV_IN_PROJECT: false
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -105,8 +105,8 @@ workflows:
             tags:
               only: /.*/
       - deploy_library:
-          # requires:
-          #   - build
+          requires:
+            - build
           filters:
             tags:
               only: /.*/
