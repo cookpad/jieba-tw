@@ -42,7 +42,7 @@ GitHub: https://github.com/fxsjy/jieba
 
 """
 
-setup(name='jieba',
+setup(name='jieba-tw',
       version='0.39.1',
       description='Traditional Chinese Words Segementation Utilities',
       long_description=LONGDOC,
