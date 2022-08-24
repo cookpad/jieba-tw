@@ -31,9 +31,6 @@ jobs: # A basic unit of work in a run
       - run: 
             command: |
               pipenv sync --dev
-      - run: 
-            command: |
-              pipenv graph
       - save_cache:
           key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
           paths:
@@ -42,7 +39,7 @@ jobs: # A basic unit of work in a run
             - "/usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages"
       - run:
           command: |
-            python test/test.py
+            pipenv run test
       - store_test_results:
           path: reports
       # - slack_notify_if_failed
