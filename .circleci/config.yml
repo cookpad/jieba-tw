@@ -30,10 +30,7 @@ jobs: # A basic unit of work in a run
           key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       - run: 
             command: |
-              pipenv sync --dev
-      - run: 
-            command: |
-              pipenv shell
+              pipenv graph
       - save_cache:
           key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
           paths:
