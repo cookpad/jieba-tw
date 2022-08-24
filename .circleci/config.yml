@@ -26,17 +26,17 @@ jobs: # A basic unit of work in a run
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /home/circleci/.pyenv
-      # - restore_cache:
-      #     key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
+      - restore_cache:
+          key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
       - run: 
             command: |
-              pip install jieba
-      # - save_cache:
-      #     key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
-      #     paths:
-      #       - ".venv"
-      #       - "/usr/local/bin"
-      #       - "/usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages"
+              pipenv sync --dev
+      - save_cache:
+          key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages"
       # - run:
       #     name: Linter, Type Checking, Black
       #     command: |
@@ -55,14 +55,16 @@ jobs: # A basic unit of work in a run
     docker:
       - image: circleci/python:<< pipeline.parameters.python_version >>
         environment:
-          PIPENV_VENV_IN_PROJECT: false
+          PIPENV_VENV_IN_PROJECT: true
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python<< pipeline.parameters.python_version >>/site-packages
       - run:
           name: Build library
-          command: python setup.py bdist_wheel
+          command: |
+            sudo pip install pipenv
+            pipenv run build
       - persist_to_workspace:
           root: << pipeline.parameters.working_directory >>
           paths: .

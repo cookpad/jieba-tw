@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+name = "pypi"
+verify_ssl = true
+
+[dev-packages]
+wheel = ">=0.33"
+
+[packages]
+jieba = ">=0.42.1"
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+build = "python setup.py bdist_wheel"

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from setuptools import setup
 LONGDOC = """
 jieba-tw
@@ -42,8 +43,16 @@ GitHub: https://github.com/fxsjy/jieba
 
 """
 
+# Fetch release version
+try:
+    # read release environment variable - this is set in circleci for tagged builds
+    RELEASE_VERSION = os.environ["CIRCLE_TAG"]
+except KeyError:
+    # if no release version is set, use a dummy release version - this case is used in the test workflow in circleci
+    RELEASE_VERSION = "x.x.x"
+
 setup(name='jieba-tw',
-      version='0.39.1',
+      version=RELEASE_VERSION,
       description='Traditional Chinese Words Segementation Utilities',
       long_description=LONGDOC,
       author='Tzing',
