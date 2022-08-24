@@ -65,12 +65,12 @@ jobs: # A basic unit of work in a run
       # - slack_notify_if_failed
 
   deploy_library:
-    working_directory: << pipeline.parameters.working_directory >>
+    working_directory: ~/jieba-tw
     docker: # run the steps with Docker
       - image: circleci/ruby:2.6.5
     steps:
       - attach_workspace:
-          at: << pipeline.parameters.working_directory >>
+          at: ~/jieba-tw
       - run:
           name: Install package_cloud
           command: |
@@ -78,7 +78,6 @@ jobs: # A basic unit of work in a run
       - run:
           name: Deploy to package cloud
           command: package_cloud push cookpad-global/python-internal/python ./dist/*
-      # - slack_notify_if_failed
 
 workflows:
   version: 2
