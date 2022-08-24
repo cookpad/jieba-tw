@@ -10,5 +10,5 @@ wheel = ">=0.33"
 jieba = ">=0.42.1"
 
 [scripts]
-test = "bash -c \"mkdir -p reports && python test/test.py"""
+test = "bash -c \"mkdir -p reports && python test/test.py""
 build = "python setup.py bdist_wheel"
