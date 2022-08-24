@@ -51,7 +51,7 @@ except KeyError:
     # if no release version is set, use a dummy release version - this case is used in the test workflow in circleci
     RELEASE_VERSION = "x.x.x"
 
-setup(name='jieba-tw',
+setup(name='jieba_tw',
       version=RELEASE_VERSION,
       description='Traditional Chinese Words Segementation Utilities',
       long_description=LONGDOC,
@@ -77,7 +77,7 @@ setup(name='jieba-tw',
         'Topic :: Text Processing :: Linguistic',
       ],
       keywords='NLP,tokenizing,Chinese word segementation',
-      packages=['jieba-tw'],
-      package_dir={'jieba-tw':'jieba-tw'},
-      package_data={'jieba-tw':['*.*','finalseg/*','analyse/*','posseg/*']}
+      packages=['jieba_tw'],
+      package_dir={'jieba_tw':'jieba_tw'},
+      package_data={'jieba_tw':['*.*','finalseg/*','analyse/*','posseg/*']}
 )
