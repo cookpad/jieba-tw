@@ -111,6 +111,6 @@ workflows:
             - build
           filters:
             tags:
-              only: /.*/
+              ignore: /apply-.*/
             branches:
               ignore: /.*/
