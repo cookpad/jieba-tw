@@ -31,6 +31,8 @@ jobs: # A basic unit of work in a run
       - run: 
             command: |
               pipenv sync --dev
+      - run: 
+            command: |
               pipenv shell
       - save_cache:
           key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
