@@ -46,8 +46,8 @@ jobs: # A basic unit of work in a run
       # - run:
       #     command: |
       #       pipenv run test
-      # - store_test_results:
-      #     path: reports
+      - store_test_results:
+          path: reports
       # - slack_notify_if_failed
 
   build:
@@ -111,6 +111,6 @@ workflows:
             - build
           filters:
             tags:
-              ignore: /apply-.*/
+              only: /.*/
             branches:
               ignore: /.*/
