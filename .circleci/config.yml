@@ -65,7 +65,7 @@ commands:
 parameters:
   working_directory:
     type: string
-    default: ~/jieba-tw
+    default: ~/jieba_tw
   python_version:
     type: string
     default: "3.8"
@@ -89,7 +89,7 @@ jobs: # A basic unit of work in a run
             command: |
               pipenv sync --dev
       - save_cache:
-          key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
+          key: jieba_tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
           paths:
             - ".venv"
             - "/usr/local/bin"

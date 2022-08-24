@@ -9,6 +9,7 @@ def cuttest(test_sent):
     result = " / ".join(result)
     return result
 
+
 if __name__ == "__main__":
     examples = ["这是一个伸手不见五指的黑夜。我叫孙悟空，我爱北京，我爱Python和C++。", 
                 "我不喜欢日本和服。",
@@ -18,6 +19,11 @@ if __name__ == "__main__":
     for segment in examples:
         if cuttest(segment) == "":
             sys.exit(1)
+
+
+    # def test_tokenizer():
+    #     tokenized_text = cuttest("好簡單牛排")
+    #     assert list(tokenized_text) == ["好", "簡單", "牛排"]
             
     # cuttest("这是一个伸手不见五指的黑夜。我叫孙悟空，我爱北京，我爱Python和C++。")
     # cuttest("我不喜欢日本和服。")
