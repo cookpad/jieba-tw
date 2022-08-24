@@ -22,7 +22,7 @@ jobs: # A basic unit of work in a run
     docker:
       - image: cimg/python:<< parameters.python_version >>
         environment:
-          PIPENV_VENV_IN_PROJECT: false
+          PIPENV_VENV_IN_PROJECT: true
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /home/circleci/.pyenv
@@ -31,7 +31,6 @@ jobs: # A basic unit of work in a run
       - run: 
             command: |
               pipenv sync --dev
-              pipenv shell
       - save_cache:
           key: jieba-tw-{{ .Branch }}-<< parameters.python_version >>-{{ checksum "Pipfile.lock" }}
           paths:
