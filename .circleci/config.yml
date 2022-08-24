@@ -43,9 +43,9 @@ jobs: # A basic unit of work in a run
       #       pipenv run lint
       #       pipenv run mypy --config-file mypy.ini ml_utils
       #       pipenv run black --check --diff .
-      # - run:
-      #     command: |
-      #       pipenv run test
+      - run:
+          command: |
+            python test/test.py
       - store_test_results:
           path: reports
       # - slack_notify_if_failed
