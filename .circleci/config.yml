@@ -158,6 +158,8 @@ workflows:
             tags:
               only: /.*/
       - deploy_library:
+          requires:
+            - build
           filters:
             tags:
               only: /.*/

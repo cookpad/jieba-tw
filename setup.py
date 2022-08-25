@@ -2,7 +2,7 @@
 import os
 from setuptools import setup
 LONGDOC = """
-jieba-tw
+jieba_tw
 =====
 
 “结巴”中文分词：做最好的 Python 中文分词组件
