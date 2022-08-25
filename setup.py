@@ -1,8 +1,18 @@
 # -*- coding: utf-8 -*-
 import os
 from setuptools import setup
+
+from pipenv.project import Project
+from pipenv.utils import convert_deps_to_pip
+
+# Parse the Pipfile to gather requirements
+pfile = Project(chdir=False).parsed_pipfile
+requirements = convert_deps_to_pip(pfile["packages"], r=False)
+print(requirements)
+
+
 LONGDOC = """
-jieba-tw
+jieba_tw
 =====
 
 “结巴”中文分词：做最好的 Python 中文分词组件
@@ -76,6 +86,10 @@ setup(name='jieba_tw',
         'Topic :: Text Processing :: Indexing',
         'Topic :: Text Processing :: Linguistic',
       ],
+      include_package_data=True,
+      zip_safe=False,
+      platforms="any",
+      install_requires=requirements,
       keywords='NLP,tokenizing,Chinese word segementation',
       packages=['jieba_tw'],
       package_dir={'jieba_tw':'jieba_tw'},
