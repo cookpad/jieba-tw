@@ -158,6 +158,9 @@ workflows:
             tags:
               only: /.*/
       - deploy_library:
+          context:
+            - global-search-slack
+            - global-search-packagecloud-push
           requires:
             - build
           filters:
