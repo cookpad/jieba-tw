@@ -68,7 +68,7 @@ parameters:
     default: ~/jieba_tw
   python_version:
     type: string
-    default: "3.8"
+    default: "3.10"
 
 jobs: # A basic unit of work in a run
   test: # runs not using Workflows must have a `build` job as entry point
@@ -150,7 +150,7 @@ workflows:
               only: /.*/
           matrix:
             parameters:
-              python_version: [ "3.8", "3.9", "3.10" ]
+              python_version: [ "3.9", "3.10", "3.11", "3.12" ]
       - build:
           requires:
             - test
