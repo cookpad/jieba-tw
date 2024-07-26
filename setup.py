@@ -43,13 +43,7 @@ GitHub: https://github.com/fxsjy/jieba
 
 """
 
-# Fetch release version
-try:
-    # read release environment variable - this is set in circleci for tagged builds
-    RELEASE_VERSION = os.environ["CIRCLE_TAG"]
-except KeyError:
-    # if no release version is set, use a dummy release version - this case is used in the test workflow in circleci
-    RELEASE_VERSION = "x.x.x"
+RELEASE_VERSION = "0.39.2"
 
 setup(name='jieba_tw',
       version=RELEASE_VERSION,
