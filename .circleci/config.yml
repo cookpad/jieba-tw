@@ -131,7 +131,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: Install package_cloud
           command: |
-            gem install package_cloud
+            gem install domain_name -v 0.5.20190701 && gem install package_cloud
       - run:
           name: Deploy to package cloud
           command: package_cloud push cookpad-global/python-internal/python ./dist/*
